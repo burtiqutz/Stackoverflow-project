@@ -23,4 +23,8 @@ public class User {
 
     @Column(nullable = false)
     private Double score = 0.0;
+
+    public String test() {
+        return this.getUsername();
+    }
 }
