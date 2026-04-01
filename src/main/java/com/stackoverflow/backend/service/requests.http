@@ -1,0 +1,126 @@
+### QUESTIONS - CREATE
+
+POST http://localhost:8080/api/questions/author/2
+Content-Type: application/json
+
+{
+  "title": "Problema PostgreSQL",
+  "text": "Nu se conecteaza baza de date",
+  "image": "img3.png",
+  "tags": ["postgres", "database"]
+}
+
+###
+
+POST http://localhost:8080/api/questions/author/3
+Content-Type: application/json
+
+{
+  "title": "Problema Java",
+  "text": "Nu imi merge codul Java",
+  "image": "img1.png",
+  "tags": ["java", "oop"]
+}
+
+###
+
+POST http://localhost:8080/api/questions/author/4
+Content-Type: application/json
+
+{
+  "title": "Spring Boot error",
+  "text": "Am eroare la controller",
+  "image": "img2.png",
+  "tags": ["spring", "backend"]
+}
+
+###
+
+### test create cu autor inexistent
+POST http://localhost:8080/api/questions/author/100
+Content-Type: application/json
+
+{
+  "title": "Test autor invalid",
+  "text": "Acest request trebuie sa dea eroare",
+  "image": "x.png",
+  "tags": ["test"]
+}
+
+###
+
+### QUESTIONS - READ ALL
+GET http://localhost:8080/api/questions
+
+
+### QUESTIONS - READ BY ID
+GET http://localhost:8080/api/questions/1
+GET http://localhost:8080/api/questions/2
+
+
+### test id inexistent
+GET http://localhost:8080/api/questions/999
+
+
+### QUESTIONS - UPDATE
+
+### doar autorul poate modifica propria intrebare
+PUT http://localhost:8080/api/questions/1/author/2
+Content-Type: application/json
+
+{
+  "title": "Problema PostgreSQL REZOLVATA",
+  "text": "Am rezolvat problema",
+  "image": "img_updated.png",
+  "tags": ["postgres", "solved"]
+}
+
+### alt autor incearca sa modifice intrebarea
+PUT http://localhost:8080/api/questions/1/author/3
+Content-Type: application/json
+
+{
+  "title": "Hack",
+  "text": "Nu ar trebui sa mearga",
+  "image": "x.png",
+  "tags": ["hack"]
+}
+
+###
+
+### update pentru intrebare inexistenta
+PUT http://localhost:8080/api/questions/999/author/2
+Content-Type: application/json
+
+{
+  "title": "Intrebare inexistenta",
+  "text": "Nu ar trebui sa existe",
+  "image": "none.png",
+  "tags": ["test"]
+}
+
+### QUESTIONS - SEARCH BY TITLE
+GET http://localhost:8080/api/questions/search?title=Spring
+GET http://localhost:8080/api/questions/search?title=Java
+GET http://localhost:8080/api/questions/search?title=PostgreSQL
+GET http://localhost:8080/api/questions/search?title=NuExista
+
+
+### QUESTIONS - DELETE
+### alt autor incearca sa stearga intrebarea
+DELETE http://localhost:8080/api/questions/2/author/2
+
+###
+
+### autorul sterge propria intrebare
+DELETE http://localhost:8080/api/questions/2/author/3
+
+###
+
+### verificare dupa delete
+GET http://localhost:8080/api/questions
+
+###
+
+### delete intrebare inexistenta
+DELETE http://localhost:8080/api/questions/999/author/2
