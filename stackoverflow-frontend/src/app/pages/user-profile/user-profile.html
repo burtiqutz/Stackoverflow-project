@@ -1,1 +1,38 @@
-<p>user-profile works!</p>
+<div class="profile-page">
+  <div class="profile-container">
+
+    <div class="profile-header">
+      <h2>User Profile</h2>
+    </div>
+
+    @if (currentUser) {
+      <div class="profile-card">
+        <div class="avatar-section">
+          <div class="avatar-placeholder">
+            {{ (currentUser?.username?.charAt(0) || 'U') | uppercase }}
+          </div>
+          <div class="user-titles">
+            <h3>{{ currentUser.username }}</h3>
+            <span class="user-email">{{ currentUser.email }}</span>
+          </div>
+        </div>
+
+        <div class="stats-section">
+          <div class="stat-box">
+            <span class="stat-value">{{ currentUser.score }}</span>
+            <span class="stat-label">Reputation Score</span>
+          </div>
+        </div>
+
+        <div class="actions-section">
+          <button class="btn-logout" (click)="onLogout()">Log out</button>
+        </div>
+      </div>
+    } @else {
+      <div class="profile-card" style="text-align: center; color: #6a737c;">
+        <p>Loading user data...</p>
+      </div>
+    }
+
+  </div>
+</div>
