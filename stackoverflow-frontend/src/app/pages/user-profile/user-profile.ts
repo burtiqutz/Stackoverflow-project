@@ -8,8 +8,6 @@ export interface UserProfileData {
   username: string;
   email: string;
   score: number;
-  aboutMe?: string;
-  memberSince?: string;
 }
 
 @Component({
@@ -48,10 +46,7 @@ export class UserProfile implements OnInit {
   }
 
   onLogout() {
-    this.router.navigate(['/login']).then((success) => {
-      if (!success) {
-        console.error('Navigation to /login failed');
-      }
-    });
+    localStorage.removeItem('currentUser');
+    this.router.navigate(['/login']);
   }
 }
