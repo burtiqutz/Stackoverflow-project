@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -47,5 +48,18 @@ public class UserService {
         }
         userRepository.deleteById(id);
     }
+    public Optional<User> authenticateUser(String email, String password) {
 
+        Optional<User> userOptional = userRepository.findByEmail(email);
+
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            // should use bcrypt here
+            if (user.getPassword().equals(password)) {
+                return Optional.of(user);
+            }
+        }
+
+        return Optional.empty();
+    }
 }

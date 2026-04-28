@@ -8,7 +8,7 @@ import { QuestionDetail } from './pages/question-detail/question-detail';
 export const routes: Routes = [
   { path: 'login', component: Login },
   { path: 'register', component: Register },
-  { path: 'profile', component: UserProfile },
+  { path: 'profile/:id', component: UserProfile },
   { path: 'questions', component: QuestionsList },
   { path: 'questions/:id', component: QuestionDetail },
   { path: '', redirectTo: '/questions', pathMatch: 'full' }
