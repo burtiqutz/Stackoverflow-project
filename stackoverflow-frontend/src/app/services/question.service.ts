@@ -7,11 +7,15 @@ import { Question } from '../models/question.model';
   providedIn: 'root'
 })
 export class QuestionService {
-  private jsonUrl = '/questions.json';
+  private apiUrl = 'http://localhost:8080/api/questions';
 
   constructor(private http: HttpClient) {}
 
   getQuestions(): Observable<Question[]> {
-    return this.http.get<Question[]>(this.jsonUrl);
+    return this.http.get<Question[]>(this.apiUrl);
+  }
+
+  getQuestionById(id: number): Observable<Question> {
+    return this.http.get<Question>(`${this.apiUrl}/${id}`);
   }
 }
