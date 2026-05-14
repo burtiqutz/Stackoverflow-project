@@ -1,1 +1,144 @@
-<p>question-detail works!</p>
+<div class="question-detail-page">
+  <a class="back-link" routerLink="/questions">← Back to questions</a>
+
+  <div *ngIf="isLoading" class="loading">
+    Loading question...
+  </div>
+
+  <div *ngIf="!isLoading && errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <ng-container *ngIf="question as q">
+    <div *ngIf="!isLoading" class="question-detail-card">
+      <div class="question-main">
+        <div class="question-stats vote-box">
+          <button type="button" (click)="upvoteQuestion()">▲</button>
+          <span>{{ questionVotes }}</span>
+          <button type="button" (click)="downvoteQuestion()">▼</button>
+        </div>
+
+        <div class="question-content">
+          <h1>{{ q.title }}</h1>
+
+          <p class="question-text">
+            {{ q.text }}
+          </p>
+
+          <div *ngIf="q.image" class="answer-picture">
+            <img [src]="q.image" alt="Question image">
+          </div>
+
+          <div class="tags-container">
+            <span class="tag" *ngFor="let tag of q.tags">
+              {{ tag }}
+            </span>
+          </div>
+
+          <div class="question-footer">
+            <span>Asked by {{ getQuestionAuthorName(q) }}</span>
+            <span>{{ q.createdAt }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <section class="answers-section">
+    <h2>{{ answers.length }} Answers</h2>
+
+    <div *ngIf="isLoadingAnswers" class="loading">
+      Loading answers...
+    </div>
+
+    <div *ngIf="!isLoadingAnswers && answersErrorMessage" class="error-message">
+      {{ answersErrorMessage }}
+    </div>
+
+    <div *ngIf="!isLoadingAnswers && !answersErrorMessage && answers.length === 0" class="no-answers">
+      No answers yet.
+    </div>
+
+    <div class="answer-card answer-with-votes" *ngFor="let answer of answers">
+      <div class="vote-box">
+        <button type="button" (click)="upvoteAnswer(answer.id)">▲</button>
+        <span>{{ getAnswerVotes(answer.id) }}</span>
+        <button type="button" (click)="downvoteAnswer(answer.id)">▼</button>
+      </div>
+
+      <div class="answer-body">
+        <div *ngIf="editingAnswerId !== answer.id">
+          <p class="answer-text">
+            {{ answer.text }}
+          </p>
+
+          <div *ngIf="answer.imagine" class="answer-picture">
+            <img [src]="answer.imagine" alt="Answer image">
+          </div>
+
+          <div class="answer-footer">
+            <span>Answered by {{ getAnswerAuthorName(answer) }}</span>
+            <span>{{ answer.creationData }}</span>
+          </div>
+
+          <div class="answer-actions">
+            <button type="button" (click)="startEdit(answer)">Edit</button>
+            <button type="button" class="delete-button" (click)="deleteAnswer(answer.id)">Delete</button>
+          </div>
+        </div>
+
+        <div *ngIf="editingAnswerId === answer.id" class="edit-answer-form">
+          <label>Edit answer text</label>
+          <textarea
+            name="editedAnswerText"
+            [(ngModel)]="editedAnswerText"
+            rows="5">
+          </textarea>
+
+          <label>Edit picture URL optional</label>
+          <input
+            name="editedAnswerPicture"
+            type="text"
+            [(ngModel)]="editedAnswerPicture">
+
+          <div class="answer-actions">
+            <button type="button" (click)="saveEdit(answer.id)" [disabled]="!editedAnswerText.trim()">
+              Save
+            </button>
+            <button type="button" (click)="cancelEdit()">
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="add-answer-section">
+    <h2>Your Answer</h2>
+
+    <form (ngSubmit)="addAnswer()" class="answer-form">
+      <label for="answerText">Answer text</label>
+      <textarea
+        id="answerText"
+        name="answerText"
+        [(ngModel)]="newAnswerText"
+        rows="6"
+        placeholder="Write your answer here..."
+        required>
+      </textarea>
+
+      <label for="answerPicture">Picture URL optional</label>
+      <input
+        id="answerPicture"
+        name="answerPicture"
+        type="text"
+        [(ngModel)]="newAnswerPicture"
+        placeholder="https://example.com/image.png">
+
+      <button type="submit" [disabled]="!newAnswerText.trim()">
+        Post Answer
+      </button>
+    </form>
+  </section>
+</div>

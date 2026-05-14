@@ -1,0 +1,256 @@
+.question-detail-page {
+  max-width: 1000px;
+  margin: 32px auto;
+  padding: 0 24px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #111827;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 24px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: 500;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+.loading,
+.error-message,
+.no-answers {
+  padding: 16px;
+  border-radius: 8px;
+  background: #f3f4f6;
+  margin-bottom: 16px;
+}
+
+.error-message {
+  color: #b91c1c;
+  background: #fee2e2;
+}
+
+.question-detail-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 24px;
+  background: #ffffff;
+  margin-bottom: 32px;
+}
+
+.question-main {
+  display: flex;
+  gap: 24px;
+}
+
+.question-stats {
+  min-width: 80px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.question-content {
+  flex: 1;
+}
+
+.question-content h1 {
+  margin: 0 0 16px 0;
+  font-size: 32px;
+  line-height: 1.2;
+  color: #111827;
+}
+
+.question-text {
+  margin-bottom: 16px;
+  line-height: 1.6;
+  color: #374151;
+  font-size: 16px;
+}
+
+.tags-container {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.tag {
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: #e0f2fe;
+  color: #0369a1;
+  font-size: 13px;
+}
+
+.question-footer,
+.answer-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.answers-section {
+  margin-top: 32px;
+}
+
+.answers-section h2,
+.add-answer-section h2 {
+  margin-bottom: 16px;
+  font-size: 24px;
+  color: #111827;
+}
+
+.answer-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+  background: #ffffff;
+}
+
+.answer-with-votes {
+  display: flex;
+  gap: 20px;
+}
+
+.answer-body {
+  flex: 1;
+}
+
+.answer-text {
+  margin: 0 0 16px 0;
+  line-height: 1.6;
+  color: #374151;
+  font-size: 16px;
+}
+
+.answer-picture img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.vote-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 60px;
+  color: #374151;
+  font-weight: 600;
+}
+
+.vote-box button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 18px;
+  color: #6b7280;
+}
+
+.vote-box button:hover {
+  color: #2563eb;
+}
+
+.answer-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.answer-actions button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  background: #2563eb;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.answer-actions button:hover {
+  background: #1d4ed8;
+}
+
+.answer-actions button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+.answer-actions .delete-button {
+  background: #dc2626;
+}
+
+.answer-actions .delete-button:hover {
+  background: #b91c1c;
+}
+
+.add-answer-section {
+  margin-top: 32px;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 24px;
+}
+
+.answer-form,
+.edit-answer-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.answer-form label,
+.edit-answer-form label {
+  font-weight: 600;
+  color: #374151;
+}
+
+.answer-form textarea,
+.answer-form input,
+.edit-answer-form textarea,
+.edit-answer-form input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.answer-form textarea,
+.edit-answer-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.answer-form textarea:focus,
+.answer-form input:focus,
+.edit-answer-form textarea:focus,
+.edit-answer-form input:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+
+.answer-form button {
+  align-self: flex-start;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.answer-form button:hover {
+  background: #1d4ed8;
+}
+
+.answer-form button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}

@@ -1,31 +1,45 @@
-<div class = "questions-page">
-  <div class = "questions-header">
+<div class="questions-page">
+  <div class="questions-header">
     <h1>Top Questions</h1>
     <p>{{ questions.length }} questions</p>
   </div>
 
-  <div class = "question-card" *ngFor = "let question of questions">
-    <div class = "question-stats">
-      <span>{{ question.votes }} votes</span>
+  <div *ngIf="isLoading">
+    Loading questions...
+  </div>
+
+  <div *ngIf="!isLoading && errorMessage">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="!isLoading && !errorMessage && questions.length === 0">
+    No questions found.
+  </div>
+
+  <div class="question-card" *ngFor="let question of questions">
+    <div class="question-stats">
+      <span>{{ question.status || 'RECEIVED' }}</span>
     </div>
 
-    <div class = "question-content">
-      <h2 class = "question-title">
-        {{ question.title }}
+    <div class="question-content">
+      <h2 class="question-title">
+        <a [routerLink]="['/questions', question.id]">
+          {{ question.title }}
+        </a>
       </h2>
 
-      <p class = "question-text">
+      <p class="question-text">
         {{ question.text }}
       </p>
 
-      <div class = "tags-container">
-        <span class = "tag" *ngFor = "let tag of question.tags">
+      <div class="tags-container">
+        <span class="tag" *ngFor="let tag of question.tags">
           {{ tag }}
         </span>
       </div>
 
-      <div class = "question-footer">
-        <span>Asked by {{ question.author }}</span>
+      <div class="question-footer">
+        <span>Asked by {{ getQuestionAuthorName(question) }}</span>
         <span>{{ question.createdAt }}</span>
       </div>
     </div>
